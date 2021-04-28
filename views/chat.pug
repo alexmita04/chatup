@@ -1,0 +1,33 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css' integrity='sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=' crossorigin='anonymous')
+  link(rel='stylesheet' href='css/style.css')
+  title ChatUp | WebApp
+.chat-container
+  header.chat-header
+    h1
+      i.fas
+      |  ChatUp
+    a.btn(href='index.html') Leave Room
+  main.chat-main
+    .chat-sidebar
+      h3
+        i.fas.fa-comments
+        |  Room Name:
+      h2#room-name
+      h3
+        i.fas.fa-users
+        |  Users
+      ul#users
+    .chat-messages
+  .chat-form-container
+    form#chat-form
+      input#msg(type='text' placeholder='Enter Message' required='' autocomplete='off')
+      button.btn
+        i.fas.fa-paper-plane
+        |  Send
+script(src='https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js' integrity='sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ==' crossorigin='anonymous')
+script(src='/socket.io/socket.io.js')
+script(src='js/main.js')

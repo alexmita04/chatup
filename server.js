@@ -2,6 +2,7 @@ const path = require('path');
 const http = require('http');
 const dotenv = require('dotenv');
 const express = require('express');
+const pug = require('pug');
 const socketio = require('socket.io');
 const formatMessage = require('./utils/messages');
 const {
@@ -19,6 +20,9 @@ dotenv.config({ path: './config.env' }); // accessing the config.env file global
 
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
 
 const botName = 'ChatUp Bot';
 
@@ -80,6 +84,14 @@ io.on('connection', (socket) => {
       });
     }
   });
+});
+
+app.get('/', (req, res) => {
+  res.status(200).render('index');
+});
+
+app.get('/chat', (req, res) => {
+  res.status(200).render('chat');
 });
 
 const PORT = process.env.PORT | 3000;
