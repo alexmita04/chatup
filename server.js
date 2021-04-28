@@ -1,5 +1,6 @@
 const path = require('path');
 const http = require('http');
+const dotenv = require('dotenv');
 const express = require('express');
 const socketio = require('socket.io');
 const formatMessage = require('./utils/messages');
@@ -13,6 +14,8 @@ const {
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
+
+dotenv.config({ path: './config.env' }); // accessing the config.env file globally
 
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -31,7 +34,7 @@ io.on('connection', (socket) => {
       'message',
       formatMessage(
         botName,
-        'WARNING! This is just a prototype app so do not write or send any important information'
+        'WARNING! THIS IS JUST A PROTOYPE APP SO DO NOT WRITE OR SEND ANY IMPORTANT INFORMATION'
       )
     );
     socket.emit(
