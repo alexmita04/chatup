@@ -17,7 +17,7 @@ const io = socketio(server);
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-const botName = 'chat bot';
+const botName = 'ChatUp Bot';
 
 // Run when a client connects
 io.on('connection', (socket) => {
@@ -27,6 +27,17 @@ io.on('connection', (socket) => {
     socket.join(user.room);
 
     // Welcome current user
+    socket.emit(
+      'message',
+      formatMessage(
+        botName,
+        'WARNING! This is just a prototype app so do not write or send any important information'
+      )
+    );
+    socket.emit(
+      'message',
+      formatMessage(botName, `You are now in ${user.room} room`)
+    );
     socket.emit('message', formatMessage(botName, 'Welcome to chat'));
 
     // Broadcast when a user connects
